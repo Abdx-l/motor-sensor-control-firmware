@@ -1,0 +1,9 @@
+name: Firmware checks
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cc -std=c11 -Wall -Wextra -Werror test.c firmware.c -lm -o test_firmware
+      - run: ./test_firmware
